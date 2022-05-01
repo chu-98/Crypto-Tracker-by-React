@@ -15,13 +15,24 @@ const animation = keyframes`
 }`;
 
 const Wrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${props => props.theme.bgColor};
+`;
+const Text = styled.h2`
+  font-size: 24px;
+  color: ${props => props.theme.textColor};
 `;
 
 function App() {
-  return <Wrapper></Wrapper>;
+  return (
+    <Wrapper>
+      <Text>Hello</Text>
+    </Wrapper>
+  );
 }
 
 export default App;
