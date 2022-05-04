@@ -22,12 +22,12 @@ const Header = styled.header`
 `;
 const Title = styled.h1`
   font-size: 48px;
-  margin: 36px 0px;
+  margin: 36px 0px 18px 0px;
   color: ${props => props.theme.accentColor};
 `;
 const Loader = styled.div`
   text-align: center;
-  margin-top: 30px;
+  margin: 30px;
 `;
 const Overview = styled.div`
   display: flex;
@@ -112,7 +112,7 @@ function Coin() {
       </Header>
 
       {loading ? (
-        <Loader>Loading...</Loader>
+        <Loader>Loading ...</Loader>
       ) : (
         <>
           <Overview>

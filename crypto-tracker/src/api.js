@@ -19,3 +19,9 @@ export function fetchCoinHistory(coinID) {
     `${BASE_URL}/coins/${coinID}/ohlcv/historical?start=${startDate}&end=${endDate}`
   ).then(res => res.json());
 }
+
+export function fetchTodayPrice(coinID) {
+  return fetch(`${BASE_URL}/coins/${coinID}/ohlcv/today`).then(res =>
+    res.json()
+  );
+}

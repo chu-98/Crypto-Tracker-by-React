@@ -1,7 +1,13 @@
 import ApexChart from "react-apexcharts";
+import styled from "styled-components";
 import { useQuery } from "react-query";
 import { useOutletContext } from "react-router";
 import { fetchCoinHistory } from "../api";
+
+const Loader = styled.div`
+  text-align: center;
+  margin: 30px;
+`;
 
 function Chart() {
   const coinID = useOutletContext();
@@ -16,7 +22,7 @@ function Chart() {
   return (
     <div>
       {isLoading ? (
-        "Loading chart..."
+        <Loader>"Loading chart..."</Loader>
       ) : (
         <ApexChart
           type="line"

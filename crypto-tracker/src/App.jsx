@@ -7,7 +7,7 @@ function App() {
     <>
       <GlobalStyles />
       <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      {/* <ReactQueryDevtools initialIsOpen={true} /> */}
     </>
   );
 }
