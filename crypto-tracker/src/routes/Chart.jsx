@@ -5,8 +5,12 @@ import { fetchCoinHistory } from "../api";
 
 function Chart() {
   const coinID = useOutletContext();
-  const { isLoading, data } = useQuery(["ohlcv", coinID], () =>
-    fetchCoinHistory(coinID)
+  const { isLoading, data } = useQuery(
+    ["ohlcv", coinID],
+    () => fetchCoinHistory(coinID),
+    {
+      refetchInterval: 5000,
+    }
   );
   console.log(fetchCoinHistory(coinID));
   return (
@@ -47,7 +51,7 @@ function Chart() {
             },
             fill: {
               type: "gradient",
-              gradient: { gradientToColors: ["skyblue"], stops: [0, 100] },
+              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
             },
             colors: ["blue"],
             tooltip: {
