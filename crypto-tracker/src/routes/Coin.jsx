@@ -4,6 +4,8 @@ import { Outlet, useLocation, useMatch, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchInfo, fetchPrice } from "../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div``;
 const Header = styled.header`
@@ -11,8 +13,13 @@ const Header = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  margin: 16px 0px;
+  div {
+    position: absolute;
+    right: 20px;
+  }
 `;
-const Home = styled.div``;
 const Title = styled.h1`
   font-size: 48px;
   margin: 36px 0px;
@@ -97,7 +104,11 @@ function Coin() {
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
-        <Home></Home>
+        <div>
+          <Link to={"/"}>
+            <FontAwesomeIcon icon={faHouseChimney} size="2x" />
+          </Link>
+        </div>
       </Header>
 
       {loading ? (
