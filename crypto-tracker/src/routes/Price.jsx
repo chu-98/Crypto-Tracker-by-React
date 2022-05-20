@@ -7,13 +7,16 @@ const Loader = styled.div`
   text-align: center;
   margin: 30px;
 `;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin: 24px;
+`;
 const List = styled.div`
+  background-color: #212121;
+  border-radius: 24px;
   margin-bottom: 24px;
-  margin-right: 36px;
+  padding: 12px 24px;
   font-size: 24px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   p {
     display: flex;

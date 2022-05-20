@@ -1,7 +1,11 @@
-const Theme = {
+export const darkTheme = {
   bgColor: "#2f3640",
-  textColor: "#f5f6fa",
+  textColor: "black",
   accentColor: "#8c7ae6",
 };
 
-export default Theme;
+export const lightTheme = {
+  bgColor: "whitesmoke",
+  textColor: "black",
+  accentColor: "#9c88ff",
+};

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { fetchInfo, fetchPrice } from "../api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouseChimney } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 
 const Container = styled.div``;
 const Header = styled.header`
@@ -24,6 +25,11 @@ const Title = styled.h1`
   font-size: 48px;
   margin: 36px 0px 18px 0px;
   color: ${props => props.theme.accentColor};
+`;
+const Img = styled.img`
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
 `;
 const Loader = styled.div`
   text-align: center;
@@ -78,6 +84,12 @@ function Coin() {
   const priceMatch = useMatch("/:coinID/price");
   const chartMatch = useMatch("/:coinID/chart");
   const { state } = useLocation();
+  const [id, setId] = useState();
+
+  useEffect(() => {
+    let id = state?.id;
+    setId(id);
+  }, [state?.id]);
 
   const { isLoading: infoLoading, data: infoData } = useQuery(
     ["info", coinID],
@@ -101,6 +113,7 @@ function Coin() {
         </title>
       </Helmet>
       <Header>
+        <Img src={`https://cryptocurrencyliveprices.com/img/${id}.png`} />
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -126,7 +139,7 @@ function Coin() {
             </OverviewItem>
             <OverviewItem>
               <span>Price:</span>
-              <span>${priceData?.quotes.USD.price.toFixed(2)}</span>
+              <span>${priceData?.quotes?.USD?.price?.toFixed(2)}</span>
             </OverviewItem>
           </Overview>
           <Description>{infoData?.description}</Description>

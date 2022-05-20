@@ -1,8 +1,10 @@
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
+import { isDarkAtom } from "../atoms";
 
 const Container = styled.div``;
 const Header = styled.header`
@@ -16,9 +18,9 @@ const CoinsList = styled.ul`
 `;
 const Coin = styled.li`
   background-color: white;
-  color: ${props => props.theme.bgColor};
+  color: ${props => props.theme.textColor};
   margin-bottom: 10px;
-  border-radius: 20px;
+  border-radius: 24px;
   a {
     display: flex;
     align-items: center;
@@ -46,6 +48,8 @@ const Img = styled.img`
 `;
 
 function Coins() {
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom(prev => !prev);
   const { isLoading, data } = useQuery("allCoins", fetchCoins);
 
   return (
@@ -55,8 +59,8 @@ function Coins() {
       </Helmet>
       <Header>
         <Title>Coin</Title>
+        <button onClick={toggleDarkAtom}>Toggle Mode</button>
       </Header>
-
       {isLoading ? (
         <Loader>Loading...</Loader>
       ) : (
@@ -65,7 +69,7 @@ function Coins() {
             <Coin key={coin.id}>
               <Link
                 to={`/${coin.id}`}
-                state={{ name: coin.name, rank: coin.rank }}
+                state={{ name: coin.name, rank: coin.rank, id: coin.id }}
               >
                 <Img
                   src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
